@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const forgotPasswordLoginLink = document.querySelector('.form-box.forgot-password .login-link');
     const transparentContent = document.querySelector('.transparent-content');
     const exploreButton = document.getElementById('exploreButton');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navigation = document.querySelector('.navigation');
 
     // Fungsi untuk mengganti form
     const switchForm = (addClassName, removeClassNames = []) => {
@@ -167,4 +169,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cek status login saat halaman dimuat
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     toggleLoginState(isLoggedIn);
+
+    menuToggle.addEventListener('click', () => {
+        navigation.classList.toggle('active');
+    });
 });
