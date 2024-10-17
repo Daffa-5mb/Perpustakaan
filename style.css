@@ -988,12 +988,34 @@ body.logged-in .show-when-logged-out {
     .navigation {
         display: none;
         width: 100%;
-        text-align: center;
-        padding-top: 10px;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 20px;
     }
 
     .navigation.active {
         display: flex;
-        flex-direction: column;
+    }
+
+    .navigation a, .navigation button, .navigation .profile-container {
+        margin: 10px 0;
+    }
+
+    .profile-container {
+        position: static;
+        margin-top: 20px;
+    }
+
+    .profile-dropdown {
+        position: static;
+        display: none;
+        margin-top: 10px;
+    }
+
+    .profile-dropdown.show {
+        display: block;
     }
 }
