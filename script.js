@@ -171,6 +171,28 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleLoginState(isLoggedIn);
 
     menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
         navigation.classList.toggle('active');
+    });
+
+    // Fungsi untuk menutup menu saat item menu diklik
+    const closeMenu = () => {
+        menuToggle.classList.remove('active');
+        navigation.classList.remove('active');
+    };
+
+    // Tambahkan event listener untuk setiap item menu
+    document.querySelectorAll('.navigation a, .navigation .btnLogin-popup').forEach(item => {
+        item.addEventListener('click', closeMenu);
+    });
+
+    // Tutup menu saat mengklik di luar menu
+    document.addEventListener('click', (event) => {
+        const isClickInsideMenu = navigation.contains(event.target);
+        const isClickOnMenuToggle = menuToggle.contains(event.target);
+        
+        if (!isClickInsideMenu && !isClickOnMenuToggle && navigation.classList.contains('active')) {
+            closeMenu();
+        }
     });
 });
