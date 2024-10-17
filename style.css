@@ -981,41 +981,67 @@ body.logged-in .show-when-logged-out {
 }
 
 @media screen and (max-width: 768px) {
-    .menu-toggle {
-        display: flex;
-    }
-
     .navigation {
-        display: none;
-        width: 100%;
-        flex-direction: column;
-        position: absolute;
+        position: fixed;
         top: 70px;
-        left: 0;
+        left: -100%; /* Mulai dari luar layar */
+        width: 100%;
+        height: calc(100vh - 70px);
         background: rgba(0, 0, 0, 0.8);
-        padding: 20px;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 0;
+        transition: left 0.3s ease; /* Tambahkan transisi */
+        overflow-y: auto;
     }
 
     .navigation.active {
-        display: flex;
+        left: 0; /* Geser ke dalam layar */
     }
 
-    .navigation a, .navigation button, .navigation .profile-container {
+    .navigation a, 
+    .navigation .btnLogin-popup,
+    .navigation .profile-container {
         margin: 10px 0;
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        transition-delay: 0.1s;
     }
 
-    .profile-container {
-        position: static;
-        margin-top: 20px;
+    .navigation.active a,
+    .navigation.active .btnLogin-popup,
+    .navigation.active .profile-container {
+        opacity: 1;
+        transform: translateX(0);
     }
 
-    .profile-dropdown {
-        position: static;
-        display: none;
-        margin-top: 10px;
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 21px;
+        cursor: pointer;
+        transition: all 0.3s ease;
     }
 
-    .profile-dropdown.show {
-        display: block;
+    .menu-toggle span {
+        width: 100%;
+        height: 3px;
+        background-color: #fff;
+        transition: all 0.3s ease;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
     }
 }
